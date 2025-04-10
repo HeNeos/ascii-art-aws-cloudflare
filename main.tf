@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "5.24.0" # old version because there is a bug with lifecycle
     }
   }
 }
@@ -27,13 +27,12 @@ resource "aws_s3_bucket_lifecycle_configuration" "auto_delete" {
   bucket = aws_s3_bucket.ascii_art_bucket.id
 
   rule {
-    id = "auto-delete-after-1-day"
-    
+    id     = "auto-delete-after-1-day"
+    status = "Enabled"
     expiration {
       days = 1
     }
 
-    status = "Enabled"
   }
 }
 
