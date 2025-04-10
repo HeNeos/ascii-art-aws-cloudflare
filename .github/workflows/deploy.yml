@@ -33,9 +33,9 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-      run: terraform plan -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID"
+      run: terraform plan -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var="r2_access_key_id=$R2_ACCESS_KEY_ID" -var="r2_secret_access_key=$R2_SECRET_ACCESS_KEY"
       if: github.ref == 'refs/heads/main'
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID"
+      run: terraform apply -auto-approve -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var="r2_access_key_id=$R2_ACCESS_KEY_ID" -var="r2_secret_access_key=$R2_SECRET_ACCESS_KEY"
       if: github.ref == 'refs/heads/main'
