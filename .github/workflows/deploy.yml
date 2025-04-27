@@ -11,6 +11,7 @@ env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
   R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  AWS_API_ENDPOINT: ${{ secrets.AWS_API_ENDPOINT }}
 
 jobs:
   terraform:
@@ -44,9 +45,9 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-      run: terraform plan -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var="r2_access_key_id=$R2_ACCESS_KEY_ID" -var="r2_secret_access_key=$R2_SECRET_ACCESS_KEY" -var="cloudflare_api_token=$CLOUDFLARE_API_TOKEN"
+      run: terraform plan -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var="r2_access_key_id=$R2_ACCESS_KEY_ID" -var="r2_secret_access_key=$R2_SECRET_ACCESS_KEY" -var="cloudflare_api_token=$CLOUDFLARE_API_TOKEN" -var="aws_api_endpoint=$AWS_API_ENDPOINT"
       if: github.ref == 'refs/heads/main'
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var="r2_access_key_id=$R2_ACCESS_KEY_ID" -var="r2_secret_access_key=$R2_SECRET_ACCESS_KEY" -var="cloudflare_api_token=$CLOUDFLARE_API_TOKEN"
+      run: terraform apply -auto-approve -var="cloudflare_account_id=$CLOUDFLARE_ACCOUNT_ID" -var="r2_access_key_id=$R2_ACCESS_KEY_ID" -var="r2_secret_access_key=$R2_SECRET_ACCESS_KEY" -var="cloudflare_api_token=$CLOUDFLARE_API_TOKEN" -var="aws_api_endpoint=$AWS_API_ENDPOINT"
       if: github.ref == 'refs/heads/main'

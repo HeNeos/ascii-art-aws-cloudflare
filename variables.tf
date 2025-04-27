@@ -9,6 +9,11 @@ variable "cloudflare_api_token" {
   sensitive   = true
 }
 
+variable "aws_api_endpoint" {
+  description = "AWS API endpoint"
+  type        = string
+  sensitive   = true
+}
 
 variable "r2_access_key_id" {
   description = "R2 Access Key ID"
