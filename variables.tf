@@ -3,6 +3,13 @@ variable "cloudflare_account_id" {
   type        = string
 }
 
+variable "cloudflare_api_token" {
+  description = "Cloudflare API Token"
+  type        = string
+  sensitive   = true
+}
+
+
 variable "r2_access_key_id" {
   description = "R2 Access Key ID"
   type        = string
@@ -14,3 +21,4 @@ variable "r2_secret_access_key" {
   type        = string
   sensitive   = true
 }
+
