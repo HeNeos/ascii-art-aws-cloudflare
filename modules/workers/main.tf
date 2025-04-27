@@ -23,11 +23,12 @@ resource "cloudflare_workers_script" "generate_url_worker" {
   ]
 }
 
-resource "cloudflare_workers_route" "generate_route" {
-  zone_id     = "api-generate-url"
-  pattern     = "api-generate-url/*"
-  script = cloudflare_worker_script.generate_url_worker.name
-}
+# Not possible to use a zone id without a custom domain
+# resource "cloudflare_workers_route" "generate_route" {
+#   zone_id     = "api-generate-url"
+#   pattern     = "api-generate-url/*"
+#   script = cloudflare_workers_script.generate_url_worker.id
+# }
 
 
 resource "cloudflare_workers_script" "poll_result_worker" {
@@ -50,8 +51,9 @@ resource "cloudflare_workers_script" "poll_result_worker" {
   ]
 }
 
-resource "cloudflare_workers_route" "poll_route" {
-  zone_id     = "api-poll-result"
-  pattern     = "api-poll-result/*"
-  script = cloudflare_worker_script.poll_result_worker.name
-}
+# Not possible to use a zone id without a custom domain
+# resource "cloudflare_workers_route" "poll_route" {
+#   zone_id     = "api-poll-result"
+#   pattern     = "api-poll-result/*"
+#   script = cloudflare_workers_script.poll_result_worker.id
+# }
